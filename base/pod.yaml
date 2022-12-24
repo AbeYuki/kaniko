@@ -18,17 +18,17 @@ spec:
         valueFrom:
           secretKeyRef:
             name: git-credential
-            key: git_username
+            key: git-username
       - name: GIT_PASSWORD
         valueFrom:
           secretKeyRef:
             name: git-credential
-            key: git_password
+            key: git-password
   restartPolicy: Never
   volumes:
   - name: kaniko-secret
     secret:
-      secretName: kaniko-docker-registry-001
+      secretName: docker-registry
       items:
         - key: .dockerconfigjson
           path: config.json
