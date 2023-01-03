@@ -1,34 +1,38 @@
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: kaniko
   namespace: kaniko
 spec:
-  containers:
-  - name: kaniko
-    image: gcr.io/kaniko-project/executor:latest
-    args:
-    - "--context=git://github.com/USERNAME/PROJECTS/"
-    - "--destination=registry.gitlab.com/USERNAME/PROJECTS/IMAGE:TAG"
-    volumeMounts:
-    - name: kaniko-secret
-      mountPath: /kaniko/.docker
-    env:
-      - name: GIT_USERNAME
-        valueFrom:
-          secretKeyRef:
-            name: git-credential
-            key: git-username
-      - name: GIT_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: git-credential
-            key: git-password
-  restartPolicy: Never
-  volumes:
-  - name: kaniko-secret
-    secret:
-      secretName: docker-registry
-      items:
-        - key: .dockerconfigjson
-          path: config.json
+  template:
+    spec:
+      containers:
+      - name: kaniko
+        image: gcr.io/kaniko-project/executor:latest
+        args:
+        - "--context=git://github.com/USERNAME/PROJECTS/"
+        - "--destination=registry.gitlab.com/USERNAME/PROJECTS/IMAGE:TAG"
+        volumeMounts:
+        - name: kaniko-secret
+          mountPath: /kaniko/.docker
+        env:
+          - name: GIT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: git-credential
+                key: git-username
+          - name: GIT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: git-credential
+                key: git-password
+      restartPolicy: Never
+      volumes:
+      - name: kaniko-secret
+        secret:
+          secretName: docker-registry
+          items:
+            - key: .dockerconfigjson
+              path: config.json
+  backoffLimit: 2
+  

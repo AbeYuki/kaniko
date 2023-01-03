@@ -9,15 +9,17 @@ namePrefix: flask-portfolio-
 nameSuffix: "-001"
 patchesStrategicMerge:
 - |-
-  apiVersion: v1
-  kind: Pod
+  apiVersion: batch/v1
+  kind: Job
   metadata:
     name: kaniko
     namespace: kaniko
   spec:
-    containers:
-    - name: kaniko
-      image: gcr.io/kaniko-project/executor:latest
-      args:
-      - "--context=git://github.com/AbeYuki/flask-portfolio/"
-      - "--destination=registry.gitlab.com/aimhighergg/docker-registry/flask-portfolio:1.0"
+    template:
+      spec:
+        containers:
+        - name: kaniko
+          image: gcr.io/kaniko-project/executor:latest
+          args:
+          - "--context=git://github.com/AbeYuki/flask-portfolio/"
+          - "--destination=registry.gitlab.com/aimhighergg/docker-registry/flask-portfolio:1.0"
