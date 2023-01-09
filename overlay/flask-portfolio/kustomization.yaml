@@ -21,5 +21,6 @@ patchesStrategicMerge:
         - name: kaniko
           image: gcr.io/kaniko-project/executor:latest
           args:
+            - "--git=branch=build"
             - "--context=git://github.com/AbeYuki/flask-portfolio/"
             - "--destination=registry.gitlab.com/aimhighergg/docker-registry/flask-portfolio:1.0"
