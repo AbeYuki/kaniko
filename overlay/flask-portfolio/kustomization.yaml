@@ -24,4 +24,3 @@ patchesStrategicMerge:
             - "--git=branch=build"
             - "--context=git://github.com/AbeYuki/flask-portfolio/"
             - "--destination=registry.gitlab.com/aimhighergg/docker-registry/flask-portfolio:1.0"
-            - "--build-arg TARGETPLATFORM=linux/amd64,linux/arm64"
