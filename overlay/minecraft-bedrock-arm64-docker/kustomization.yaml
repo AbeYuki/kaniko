@@ -22,5 +22,5 @@ patchesStrategicMerge:
           image: gcr.io/kaniko-project/executor:latest
           args:
             - "--git=branch=build"
-            - "--context=git@github.com:AbeYuki/minecraft-bedrock-arm64-docker.git"
+            - "--context=git://github.com/AbeYuki/minecraft-bedrock-arm64-docker.git"
             - "--destination=abeyuki/minecraft-bedrock-arm64:1.20.0.01"
