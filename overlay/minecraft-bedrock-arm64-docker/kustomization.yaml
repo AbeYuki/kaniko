@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kaniko
+generatorOptions:
+  disableNameSuffixHash: true
+bases:
+  - ../../base
+namePrefix: flask-portfolio-
+nameSuffix: "-001"
+patchesStrategicMerge:
+- |-
+  apiVersion: batch/v1
+  kind: Job
+  metadata:
+    name: kaniko
+    namespace: kaniko
+  spec:
+    template:
+      spec:
+        containers:
+        - name: kaniko
+          image: gcr.io/kaniko-project/executor:latest
+          args:
+            - "--git=branch=build"
+            - "--context=git@github.com:AbeYuki/minecraft-bedrock-arm64-docker.git"
+            - "--destination=abeyuki/minecraft-bedrock-arm64:1.20.0.01"
