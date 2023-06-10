@@ -23,4 +23,5 @@ patchesStrategicMerge:
           args:
             - "--git=branch=build"
             - "--context=git://github.com/AbeYuki/flask-portfolio/"
+            - "--context-sub-path=./build"
             - "--destination=registry.gitlab.com/aimhighergg/docker-registry/flask-portfolio:1.0"
