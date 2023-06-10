@@ -5,7 +5,7 @@ generatorOptions:
   disableNameSuffixHash: true
 bases:
   - ../../base
-namePrefix: flask-portfolio-
+namePrefix: minecraft-bedrock-arm64-docker
 nameSuffix: "-001"
 patchesStrategicMerge:
 - |-
@@ -23,4 +23,5 @@ patchesStrategicMerge:
           args:
             - "--git=branch=build"
             - "--context=git://github.com/AbeYuki/minecraft-bedrock-arm64-docker.git"
+            - "--dockerfile=./build/Dockerfile"
             - "--destination=abeyuki/minecraft-bedrock-arm64:1.20.0.01"
