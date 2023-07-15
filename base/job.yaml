@@ -26,6 +26,10 @@ spec:
             secretKeyRef:
               name: git-credential
               key: git-password
+        - name: GIT_TOKEN
+          secretKeyRef:
+            name: git-credential
+            key: git-password
       restartPolicy: Never
       volumes:
       - name: kaniko-secret
