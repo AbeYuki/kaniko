@@ -24,4 +24,4 @@ patchesStrategicMerge:
             - "--git=branch=build"
             - "--context=git://github.com/AbeYuki/minecraft-bedrock-arm64-docker.git"
             - "--dockerfile=./build/Dockerfile"
-            - "--destination=abeyuki/minecraft-bedrock-arm64:1.20.0.01"
+            - "--destination=abeyuki/minecraft-bedrock-arm64:${GITHUB_REF#refs/*/}"
