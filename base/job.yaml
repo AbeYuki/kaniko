@@ -15,22 +15,22 @@ spec:
         volumeMounts:
         - name: kaniko-secret
           mountPath: /kaniko/.docker
-        env:
-        - name: GIT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: git-credential
-              key: git-username
-        - name: GIT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: git-credential
-              key: git-password
-        - name: GIT_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: git-credential
-              key: git-password
+#        env:
+#        - name: GIT_USERNAME
+#          valueFrom:
+#            secretKeyRef:
+#              name: git-credential
+#              key: git-username
+#        - name: GIT_PASSWORD
+#          valueFrom:
+#            secretKeyRef:
+#              name: git-credential
+#              key: git-password
+#        - name: GIT_TOKEN
+#          valueFrom:
+#            secretKeyRef:
+#              name: git-credential
+#              key: git-password
       restartPolicy: Never
       volumes:
       - name: kaniko-secret
